@@ -28,6 +28,7 @@
             max-width: 350px;
             max-height: 500px;
             overflow-y: auto;
+            pointer-events: auto;
         }
         .info h4 {
             margin: 0 0 5px;
@@ -41,6 +42,7 @@
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            pointer-events: auto;
         }
         .legend i {
             width: 18px;
@@ -78,6 +80,7 @@
             padding: 15px;
             border-radius: 5px;
             box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            pointer-events: auto;
         }
         .controls label {
             display: block;
@@ -120,6 +123,7 @@
             max-width: 400px;
             max-height: 80vh;
             overflow-y: auto;
+            pointer-events: auto;
         }
         .stats-panel h4 {
             margin: 0 0 10px 0;
@@ -216,6 +220,102 @@
         .close-btn:hover {
             color: #333;
         }
+        
+        /* Modal per Mobile */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+        .modal-overlay.active {
+            display: block;
+        }
+        .modal-content {
+            position: relative;
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .modal-header h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        .modal-close {
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .controls {
+                top: 10px;
+                right: 10px;
+                left: 10px;
+                width: auto;
+                padding: 10px;
+            }
+            .controls select {
+                width: 100%;
+            }
+            .controls button {
+                font-size: 12px;
+                padding: 10px;
+            }
+            .stats-panel {
+                display: none !important;
+            }
+            .info {
+                max-width: 250px;
+                font-size: 12px;
+            }
+            .legend {
+                font-size: 11px;
+                padding: 8px;
+            }
+            .chart-label {
+                width: 80px;
+                font-size: 10px;
+            }
+            .chart-value {
+                font-size: 10px;
+                min-width: 35px;
+            }
+            .modal-content {
+                max-width: 95%;
+                margin: 10px auto;
+                padding: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -243,6 +343,16 @@
         <div id="statsContent"></div>
     </div>
     
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Statistiche</h3>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    
     <div id="map"></div>
 
     <script>
@@ -262,6 +372,53 @@
         let geoData = null;
         let compareMode = false;
         let selectedComuni = [];
+        let isMobile = window.innerWidth <= 768;
+        
+        // Rileva ridimensionamento
+        window.addEventListener('resize', function() {
+            isMobile = window.innerWidth <= 768;
+        });
+        
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function showModal(title, content) {
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalBody').innerHTML = content;
+            const modal = document.getElementById('modalOverlay');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Previeni propagazione click dal contenuto del modal
+            setTimeout(() => {
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }, 0);
+        }
+        
+        function showStats(title, content) {
+            if (isMobile) {
+                showModal(title, content);
+            } else {
+                const statsPanel = document.getElementById('statsPanel');
+                statsPanel.querySelector('h4').textContent = title;
+                document.getElementById('statsContent').innerHTML = content;
+                statsPanel.style.display = 'block';
+            }
+        }
+        
+        // Chiudi modal cliccando fuori
+        document.addEventListener('click', function(e) {
+            const modal = document.getElementById('modalOverlay');
+            const modalContent = modal.querySelector('.modal-content');
+            if (e.target === modal && !modalContent.contains(e.target)) {
+                closeModal();
+            }
+        });
 
         // Info control
         const info = L.control();
@@ -272,7 +429,9 @@
         };
         info.update = function (props) {
             if (!props) {
-                this._div.innerHTML = '<h4>Candidati Elezioni Regionali</h4>Passa il mouse su un comune';
+                const isMobile = window.innerWidth <= 768;
+                const azione = isMobile ? 'Clicca su un comune' : 'Passa il mouse su un comune';
+                this._div.innerHTML = '<h4>Candidati Elezioni Regionali</h4>' + azione;
                 return;
             }
 
@@ -373,10 +532,40 @@
         }
         
         function onComuneClick(e) {
-            if (!compareMode) return;
-            
             const feature = e.target.feature;
             const comune = feature.properties.COMUNE;
+            
+            // Se NON siamo in modalità confronto
+            if (!compareMode) {
+                // Su mobile, il click mostra le info del comune
+                if (isMobile) {
+                    // Forza l'aggiornamento del box info
+                    const layer = e.target;
+                    layer.setStyle({
+                        weight: 3,
+                        color: '#666',
+                        dashArray: '',
+                        fillOpacity: 0.9
+                    });
+                    layer.bringToFront();
+                    info.update(layer.feature.properties);
+                    
+                    // Reset degli altri layer dopo un momento
+                    setTimeout(() => {
+                        if (!compareMode && geojsonLayer) {
+                            geojsonLayer.eachLayer(l => {
+                                if (l !== layer) {
+                                    geojsonLayer.resetStyle(l);
+                                }
+                            });
+                        }
+                    }, 100);
+                }
+                return;
+            }
+            
+            // Modalità confronto: stoppa la propagazione per non aprire il modal
+            L.DomEvent.stopPropagation(e);
             
             // Toggle selezione comune
             const index = selectedComuni.findIndex(c => c.nome === comune);
@@ -406,6 +595,13 @@
             
             if (selectedComuni.length > 0) {
                 updateComparison();
+            } else {
+                // Se non ci sono più comuni selezionati, chiudi il pannello/modal
+                if (isMobile) {
+                    closeModal();
+                } else {
+                    closeStatsPanel();
+                }
             }
         }
         
@@ -564,9 +760,11 @@
                 .sort((a, b) => b.totale - a.totale)
                 .slice(0, 10);
             
-            let html = '<h4>⚖️ Confronto Comuni</h4>';
-            html += '<div style="margin-bottom: 15px; font-size: 12px; color: #666;">';
-            html += `Comuni selezionati: <strong>${selectedComuni.map(c => c.nome).join(', ')}</strong>`;
+            let html = '<div style="margin-bottom: 15px; font-size: 12px; color: #666;">';
+            html += `Comuni selezionati (${selectedComuni.length}/5): <strong>${selectedComuni.map(c => c.nome).join(', ')}</strong>`;
+            if (isMobile) {
+                html += '<br><em style="color: #3498db;">Clicca su altri comuni per aggiungerli/rimuoverli</em>';
+            }
             html += '</div>';
             
             // SEZIONE PRESIDENTI
@@ -629,10 +827,7 @@
             
             html += '</div>';
             
-            const statsPanel = document.getElementById('statsPanel');
-            statsPanel.querySelector('h4').textContent = '⚖️ Confronto Comuni';
-            document.getElementById('statsContent').innerHTML = html.replace('<h4>⚖️ Confronto Comuni</h4>', '');
-            statsPanel.style.display = 'block';
+            showStats('⚖️ Confronto Comuni', html);
         }
         
         function showTop10() {
@@ -663,10 +858,7 @@
                 html += `</div>`;
             });
             
-            const statsPanel = document.getElementById('statsPanel');
-            document.getElementById('statsContent').innerHTML = html;
-            statsPanel.querySelector('h4').textContent = '🏆 Top 10 Candidati Provincia';
-            statsPanel.style.display = 'block';
+            showStats('🏆 Top 10 Candidati Provincia', html);
         }
         
         function showCittaNatali() {
@@ -740,10 +932,7 @@
                 html += `</div>`;
             });
             
-            const statsPanel = document.getElementById('statsPanel');
-            document.getElementById('statsContent').innerHTML = html;
-            statsPanel.querySelector('h4').textContent = '🏘️ Città Natali dei Candidati';
-            statsPanel.style.display = 'block';
+            showStats('🏘️ Città Natali dei Candidati', html);
         }
 
         // Legenda
