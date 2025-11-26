@@ -40,8 +40,70 @@ for feature in campania_data:
             feature['properties']['elettorale'] = {
                 'cod_com': comune_ris['int']['cod_com'],
                 'desc_com': comune_ris['int']['desc_com'],
-                'candidati': []
+                'candidati': [],
+                'presidenti': {}
             }
+            
+            # Mappa liste -> presidente
+            presidenti_map = {
+                'Roberto Fico': [
+                    'PARTITO DEMOCRATICO',
+                    'MOVIMENTO 5 STELLE',
+                    'ALLEANZA VERDI E SINISTRA',
+                    'ROBERTO FICO PRESIDENTE',
+                    'A TESTA ALTA',
+                    'NOI DI CENTRO',
+                    'NOI SUD',
+                    'MASTELLA',
+                    'AVANTI CAMPANIA',
+                    'CASA RIFORMISTA'
+                ],
+                'Edmondo Cirielli': [
+                    'FRATELLI D\'ITALIA',
+                    'GIORGIA MELONI',
+                    'FORZA ITALIA',
+                    'PPE FORZA ITALIA',
+                    'LEGA',
+                    'CIRIELLI PRESIDENTE',
+                    'NOI MODERATI',
+                    'UNIONE DI CENTRO',
+                    'DEMOCRAZIA CRISTIANA',
+                    'ROTONDI',
+                    'PENSIONATI',
+                    'CONSUMATORI'
+                ],
+                'Giuliano Granato': [
+                    'CAMPANIA POPOLARE',
+                    'GIULIANO GRANATO'
+                ],
+                'Nicola Campanile': [
+                    'PER NICOLA CAMPANILE',
+                    'PER LE PERSONE',
+                    'PER LA COMUNITA'
+                ],
+                'Carlo Arnese': [
+                    'FORZA DEL POPOLO'
+                ],
+                'Stefano Bandecchi': [
+                    'DIMENSIONE BANDECCHI',
+                    'BANDECCHI'
+                ]
+            }
+            
+            # Calcola voti per presidente
+            for presidente, keywords in presidenti_map.items():
+                voti_presidente = 0
+                for lista in comune_ris['liste']:
+                    for keyword in keywords:
+                        if keyword in lista['desc'].upper():
+                            # Somma i voti dei candidati di questa lista
+                            voti_lista = sum(c['voti'] for c in comune_ris['cand'] 
+                                           if c['cod_lis'] == lista['cod'])
+                            voti_presidente += voti_lista
+                            break
+                
+                if voti_presidente > 0:
+                    feature['properties']['elettorale']['presidenti'][presidente] = voti_presidente
             
             # Aggiungi tutti i candidati con i loro voti
             for candidato in comune_ris['cand']:
@@ -61,7 +123,8 @@ for feature in campania_data:
                         'nome': nome_completo,
                         'voti': candidato['voti'],
                         'lista': nome_lista,
-                        'sesso': candidato['sex']
+                        'sesso': candidato['sex'],
+                        'luogo_nascita': candidato['l_nasc']
                     })
             
             # Ordina i candidati per voti

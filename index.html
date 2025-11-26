@@ -89,6 +89,132 @@
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 3px;
+            margin-bottom: 10px;
+        }
+        .controls button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .controls button:hover {
+            background: #2980b9;
+        }
+        .controls button.active {
+            background: #e74c3c;
+        }
+        .stats-panel {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            max-width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .stats-panel h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #777;
+        }
+        .stat-item {
+            padding: 5px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #eee;
+        }
+        .stat-item:last-child {
+            border-bottom: none;
+        }
+        .stat-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .stat-value {
+            float: right;
+            color: #3498db;
+            font-weight: bold;
+        }
+        .search-box {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        .compare-mode-info {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-size: 12px;
+            border: 1px solid #ffc107;
+        }
+        .comune-comparison {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+        .comune-comparison h5 {
+            margin: 0 0 8px 0;
+            color: #3498db;
+            font-size: 14px;
+        }
+        .comparison-chart {
+            margin-top: 15px;
+        }
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        .chart-label {
+            width: 150px;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chart-bar-bg {
+            flex: 1;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 3px;
+            position: relative;
+            margin: 0 8px;
+        }
+        .chart-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+        .chart-value {
+            font-size: 11px;
+            font-weight: bold;
+            min-width: 40px;
+            text-align: right;
+        }
+        .close-btn {
+            float: right;
+            cursor: pointer;
+            font-size: 18px;
+            color: #999;
+            line-height: 1;
+        }
+        .close-btn:hover {
+            color: #333;
         }
     </style>
 </head>
@@ -98,7 +224,25 @@
         <select id="candidatoSelect">
             <option value="">Tutti i candidati</option>
         </select>
+        
+        <input type="text" id="searchBox" class="search-box" placeholder="🔍 Cerca candidato...">
+        
+        <button id="showTop10">📊 Top 10 Provincia</button>
+        <button id="showCittaNatali">🏘️ Città Natali</button>
+        <button id="compareBtn">⚖️ Confronta Comuni</button>
+        
+        <div id="compareModeInfo" class="compare-mode-info" style="display: none;">
+            <strong>Modalità Confronto Attiva</strong><br>
+            Clicca sui comuni per confrontarli
+        </div>
     </div>
+    
+    <div class="stats-panel" id="statsPanel" style="display: none;">
+        <span class="close-btn" onclick="closeStatsPanel()">×</span>
+        <h4>📈 Statistiche</h4>
+        <div id="statsContent"></div>
+    </div>
+    
     <div id="map"></div>
 
     <script>
@@ -113,7 +257,11 @@
 
         let geojsonLayer;
         let allCandidati = new Set();
+        let candidatiDettagli = [];
         let selectedCandidato = "";
+        let geoData = null;
+        let compareMode = false;
+        let selectedComuni = [];
 
         // Info control
         const info = L.control();
@@ -219,33 +367,77 @@
         function onEachFeature(feature, layer) {
             layer.on({
                 mouseover: highlightFeature,
-                mouseout: resetHighlight
+                mouseout: resetHighlight,
+                click: onComuneClick
             });
+        }
+        
+        function onComuneClick(e) {
+            if (!compareMode) return;
+            
+            const feature = e.target.feature;
+            const comune = feature.properties.COMUNE;
+            
+            // Toggle selezione comune
+            const index = selectedComuni.findIndex(c => c.nome === comune);
+            if (index > -1) {
+                selectedComuni.splice(index, 1);
+                e.target.setStyle({
+                    weight: 1,
+                    color: 'white',
+                    fillOpacity: 0.7
+                });
+            } else {
+                if (selectedComuni.length < 5) {
+                    selectedComuni.push({
+                        nome: comune,
+                        data: feature.properties.elettorale
+                    });
+                    e.target.setStyle({
+                        weight: 4,
+                        color: '#e74c3c',
+                        fillOpacity: 0.9
+                    });
+                } else {
+                    alert('Puoi selezionare massimo 5 comuni');
+                    return;
+                }
+            }
+            
+            if (selectedComuni.length > 0) {
+                updateComparison();
+            }
+        }
+        
+        function closeStatsPanel() {
+            document.getElementById('statsPanel').style.display = 'none';
         }
 
         // Carica il GeoJSON
         fetch('salerno_candidati.geojson')
             .then(response => response.json())
             .then(data => {
+                geoData = data;
+                
                 // Raccogli tutti i candidati
                 data.features.forEach(feature => {
                     if (feature.properties.elettorale && feature.properties.elettorale.candidati) {
                         feature.properties.elettorale.candidati.forEach(cand => {
                             allCandidati.add(cand.nome);
+                            candidatiDettagli.push({
+                                nome: cand.nome,
+                                voti: cand.voti,
+                                sesso: cand.sesso,
+                                lista: cand.lista,
+                                comune: feature.properties.COMUNE,
+                                luogo_nascita: cand.luogo_nascita
+                            });
                         });
                     }
                 });
 
-                // Popola il select con i candidati
-                const select = document.getElementById('candidatoSelect');
-                const candidatiOrdinati = Array.from(allCandidati).sort();
-                candidatiOrdinati.forEach(nome => {
-                    const option = document.createElement('option');
-                    option.value = nome;
-                    option.textContent = nome;
-                    select.appendChild(option);
-                });
-
+                updateCandidatiList();
+                
                 // Aggiungi il layer alla mappa
                 geojsonLayer = L.geoJSON(data, {
                     style: style,
@@ -256,13 +448,303 @@
                 map.fitBounds(geojsonLayer.getBounds());
 
                 // Event listener per il cambio di candidato
-                select.addEventListener('change', function() {
+                document.getElementById('candidatoSelect').addEventListener('change', function() {
                     selectedCandidato = this.value;
                     geojsonLayer.setStyle(style);
                     info.update();
                 });
+                
+                // Search box
+                const searchBox = document.getElementById('searchBox');
+                searchBox.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const select = document.getElementById('candidatoSelect');
+                    const options = select.options;
+                    
+                    for (let i = 1; i < options.length; i++) {
+                        const text = options[i].text.toLowerCase();
+                        options[i].style.display = text.includes(searchTerm) ? '' : 'none';
+                    }
+                });
+                
+                // Top 10 button
+                document.getElementById('showTop10').addEventListener('click', showTop10);
+                
+                // Città Natali button
+                document.getElementById('showCittaNatali').addEventListener('click', showCittaNatali);
+                
+                // Compare button
+                document.getElementById('compareBtn').addEventListener('click', toggleCompareMode);
             })
             .catch(error => console.error('Errore nel caricamento del GeoJSON:', error));
+        
+        function updateCandidatiList() {
+            const select = document.getElementById('candidatoSelect');
+            select.innerHTML = '<option value="">Tutti i candidati</option>';
+            
+            const candidatiOrdinati = Array.from(allCandidati).sort();
+            
+            candidatiOrdinati.forEach(nome => {
+                const option = document.createElement('option');
+                option.value = nome;
+                option.textContent = nome;
+                select.appendChild(option);
+            });
+        }
+        
+        function toggleCompareMode() {
+            compareMode = !compareMode;
+            const btn = document.getElementById('compareBtn');
+            const info = document.getElementById('compareModeInfo');
+            
+            if (compareMode) {
+                btn.classList.add('active');
+                btn.textContent = '❌ Esci da Confronto';
+                info.style.display = 'block';
+                selectedComuni = [];
+                document.getElementById('statsPanel').style.display = 'none';
+            } else {
+                btn.classList.remove('active');
+                btn.textContent = '⚖️ Confronta Comuni';
+                info.style.display = 'none';
+                selectedComuni = [];
+                // Reset stili
+                geojsonLayer.setStyle(style);
+                document.getElementById('statsPanel').style.display = 'none';
+            }
+        }
+        
+        function updateComparison() {
+            if (selectedComuni.length === 0) return;
+            
+            // 1. PRESIDENTI - Aggrega voti per presidente
+            const presidentiAggregati = {};
+            
+            selectedComuni.forEach(comune => {
+                if (comune.data && comune.data.presidenti) {
+                    Object.entries(comune.data.presidenti).forEach(([presidente, voti]) => {
+                        if (!presidentiAggregati[presidente]) {
+                            presidentiAggregati[presidente] = {
+                                nome: presidente,
+                                votiPerComune: {},
+                                totale: 0
+                            };
+                        }
+                        presidentiAggregati[presidente].votiPerComune[comune.nome] = voti;
+                        presidentiAggregati[presidente].totale += voti;
+                    });
+                }
+            });
+            
+            // Ordina presidenti per voti totali
+            const presidentiOrdinati = Object.values(presidentiAggregati)
+                .sort((a, b) => b.totale - a.totale);
+            
+            // 2. CANDIDATI CONSIGLIERI - Aggrega candidati per tutti i comuni selezionati
+            const candidatiAggregati = {};
+            
+            selectedComuni.forEach(comune => {
+                if (comune.data && comune.data.candidati) {
+                    comune.data.candidati.forEach(cand => {
+                        if (!candidatiAggregati[cand.nome]) {
+                            candidatiAggregati[cand.nome] = {
+                                nome: cand.nome,
+                                votiPerComune: {},
+                                totale: 0
+                            };
+                        }
+                        candidatiAggregati[cand.nome].votiPerComune[comune.nome] = cand.voti;
+                        candidatiAggregati[cand.nome].totale += cand.voti;
+                    });
+                }
+            });
+            
+            // Trova top 10 candidati per voti totali
+            const top10Candidati = Object.values(candidatiAggregati)
+                .sort((a, b) => b.totale - a.totale)
+                .slice(0, 10);
+            
+            let html = '<h4>⚖️ Confronto Comuni</h4>';
+            html += '<div style="margin-bottom: 15px; font-size: 12px; color: #666;">';
+            html += `Comuni selezionati: <strong>${selectedComuni.map(c => c.nome).join(', ')}</strong>`;
+            html += '</div>';
+            
+            // SEZIONE PRESIDENTI
+            if (presidentiOrdinati.length > 0) {
+                html += '<div style="margin-bottom: 20px; padding: 10px; background: #e8f4f8; border-radius: 5px;">';
+                html += '<h5 style="margin: 0 0 10px 0; color: #2c3e50;">🎯 Candidati Presidente</h5>';
+                
+                presidentiOrdinati.forEach((pres, idx) => {
+                    html += `<div class="comparison-chart">`;
+                    html += `<div style="font-weight: bold; margin-bottom: 5px; font-size: 13px;">${idx + 1}. ${pres.nome}</div>`;
+                    
+                    selectedComuni.forEach(comune => {
+                        const voti = pres.votiPerComune[comune.nome] || 0;
+                        const percentuale = pres.totale > 0 ? (voti / pres.totale) * 100 : 0;
+                        
+                        html += `<div class="chart-bar">`;
+                        html += `<div class="chart-label" title="${comune.nome}">${comune.nome}</div>`;
+                        html += `<div class="chart-bar-bg">`;
+                        html += `<div class="chart-bar-fill" style="width: ${percentuale}%; background: linear-gradient(90deg, #e74c3c, #c0392b);"></div>`;
+                        html += `</div>`;
+                        html += `<div class="chart-value">${voti.toLocaleString('it-IT')}</div>`;
+                        html += `</div>`;
+                    });
+                    
+                    html += `<div style="text-align: right; margin-top: 3px; font-size: 11px; color: #e74c3c;">`;
+                    html += `Totale: <strong>${pres.totale.toLocaleString('it-IT')}</strong> voti`;
+                    html += `</div>`;
+                    html += `</div>`;
+                });
+                
+                html += '</div>';
+            }
+            
+            // SEZIONE CANDIDATI CONSIGLIERI
+            html += '<div style="margin-top: 15px;">';
+            html += '<h5 style="margin: 0 0 10px 0; color: #2c3e50;">👥 Top 10 Candidati Consiglieri</h5>';
+            
+            top10Candidati.forEach((cand, idx) => {
+                html += `<div class="comparison-chart">`;
+                html += `<div style="font-weight: bold; margin-bottom: 5px; font-size: 13px;">${idx + 1}. ${cand.nome}</div>`;
+                
+                selectedComuni.forEach(comune => {
+                    const voti = cand.votiPerComune[comune.nome] || 0;
+                    const percentuale = (voti / cand.totale) * 100;
+                    
+                    html += `<div class="chart-bar">`;
+                    html += `<div class="chart-label" title="${comune.nome}">${comune.nome}</div>`;
+                    html += `<div class="chart-bar-bg">`;
+                    html += `<div class="chart-bar-fill" style="width: ${percentuale}%"></div>`;
+                    html += `</div>`;
+                    html += `<div class="chart-value">${voti}</div>`;
+                    html += `</div>`;
+                });
+                
+                html += `<div style="text-align: right; margin-top: 3px; font-size: 11px; color: #3498db;">`;
+                html += `Totale: <strong>${cand.totale}</strong> voti`;
+                html += `</div>`;
+                html += `</div>`;
+            });
+            
+            html += '</div>';
+            
+            const statsPanel = document.getElementById('statsPanel');
+            statsPanel.querySelector('h4').textContent = '⚖️ Confronto Comuni';
+            document.getElementById('statsContent').innerHTML = html.replace('<h4>⚖️ Confronto Comuni</h4>', '');
+            statsPanel.style.display = 'block';
+        }
+        
+        function showTop10() {
+            // Aggrega voti per candidato
+            const votiPerCandidato = {};
+            candidatiDettagli.forEach(c => {
+                if (!votiPerCandidato[c.nome]) {
+                    votiPerCandidato[c.nome] = {
+                        nome: c.nome,
+                        voti: 0,
+                        sesso: c.sesso,
+                        comuni: 0
+                    };
+                }
+                votiPerCandidato[c.nome].voti += c.voti;
+                votiPerCandidato[c.nome].comuni++;
+            });
+            
+            const top10 = Object.values(votiPerCandidato)
+                .sort((a, b) => b.voti - a.voti)
+                .slice(0, 10);
+            
+            let html = '';
+            top10.forEach((cand, idx) => {
+                html += `<div class="stat-item">`;
+                html += `<span class="stat-label">${idx + 1}. ${cand.nome}</span>`;
+                html += `<span class="stat-value">${cand.voti.toLocaleString('it-IT')}</span>`;
+                html += `</div>`;
+            });
+            
+            const statsPanel = document.getElementById('statsPanel');
+            document.getElementById('statsContent').innerHTML = html;
+            statsPanel.querySelector('h4').textContent = '🏆 Top 10 Candidati Provincia';
+            statsPanel.style.display = 'block';
+        }
+        
+        function showCittaNatali() {
+            // Aggrega candidati per luogo di nascita
+            const candidatiPerCitta = {};
+            const votiPerCitta = {};
+            
+            candidatiDettagli.forEach(c => {
+                const citta = c.luogo_nascita || 'NON SPECIFICATO';
+                
+                if (!candidatiPerCitta[citta]) {
+                    candidatiPerCitta[citta] = new Set();
+                    votiPerCitta[citta] = 0;
+                }
+                
+                candidatiPerCitta[citta].add(c.nome);
+                votiPerCitta[citta] += c.voti;
+            });
+            
+            // Converti in array e ordina per numero di candidati
+            const cittaStats = Object.keys(candidatiPerCitta).map(citta => ({
+                citta: citta,
+                numCandidati: candidatiPerCitta[citta].size,
+                candidati: Array.from(candidatiPerCitta[citta]),
+                votiTotali: votiPerCitta[citta]
+            })).sort((a, b) => b.numCandidati - a.numCandidati);
+            
+            // Mostra top 15
+            const top15 = cittaStats.slice(0, 15);
+            
+            let html = '<div style="margin-bottom: 10px; font-size: 12px; color: #666;">';
+            html += 'Città che hanno "sfornato" più candidati consiglieri';
+            html += '</div>';
+            
+            top15.forEach((stat, idx) => {
+                const votiMedi = (stat.votiTotali / stat.numCandidati).toFixed(0);
+                html += `<div class="comune-comparison" style="margin: 8px 0; padding: 8px; background: #f8f9fa; border-radius: 5px;">`;
+                html += `<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">`;
+                html += `<strong style="color: #2c3e50;">${idx + 1}. ${stat.citta}</strong>`;
+                html += `<span style="color: #3498db; font-weight: bold;">${stat.numCandidati} candidati</span>`;
+                html += `</div>`;
+                html += `<div style="font-size: 11px; color: #666;">`;
+                html += `Voti totali: <strong>${stat.votiTotali.toLocaleString('it-IT')}</strong> | `;
+                html += `Media: <strong>${votiMedi}</strong> voti/candidato`;
+                html += `</div>`;
+                
+                // Mostra i top 3 candidati di questa città
+                const candidatiConVoti = candidatiDettagli
+                    .filter(c => (c.luogo_nascita || 'NON SPECIFICATO') === stat.citta)
+                    .reduce((acc, c) => {
+                        if (!acc[c.nome]) {
+                            acc[c.nome] = 0;
+                        }
+                        acc[c.nome] += c.voti;
+                        return acc;
+                    }, {});
+                
+                const top3Candidati = Object.entries(candidatiConVoti)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 3);
+                
+                if (top3Candidati.length > 0) {
+                    html += `<div style="margin-top: 5px; font-size: 11px; padding-top: 5px; border-top: 1px solid #ddd;">`;
+                    html += `<em>Top candidati:</em> `;
+                    html += top3Candidati.map(([nome, voti]) => 
+                        `${nome} (${voti})`
+                    ).join(', ');
+                    html += `</div>`;
+                }
+                
+                html += `</div>`;
+            });
+            
+            const statsPanel = document.getElementById('statsPanel');
+            document.getElementById('statsContent').innerHTML = html;
+            statsPanel.querySelector('h4').textContent = '🏘️ Città Natali dei Candidati';
+            statsPanel.style.display = 'block';
+        }
 
         // Legenda
         const legend = L.control({position: 'bottomright'});
