@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heatmap Candidati - Provincia di Salerno</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: white;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            max-width: 350px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+        .legend {
+            line-height: 18px;
+            color: #555;
+            background: white;
+            background: rgba(255,255,255,0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+        .candidato-item {
+            padding: 3px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .candidato-item:last-child {
+            border-bottom: none;
+        }
+        .candidato-nome {
+            font-weight: bold;
+            color: #333;
+        }
+        .candidato-voti {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .candidato-lista {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+        }
+        .controls {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .controls label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .controls select {
+            width: 200px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <label for="candidatoSelect">Seleziona Candidato:</label>
+        <select id="candidatoSelect">
+            <option value="">Tutti i candidati</option>
+        </select>
+    </div>
+    <div id="map"></div>
+
+    <script>
+        // Inizializza la mappa centrata sulla provincia di Salerno
+        const map = L.map('map').setView([40.45, 15.0], 10);
+
+        // Aggiungi tile layer OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+
+        let geojsonLayer;
+        let allCandidati = new Set();
+        let selectedCandidato = "";
+
+        // Info control
+        const info = L.control();
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info');
+            this.update();
+            return this._div;
+        };
+        info.update = function (props) {
+            if (!props) {
+                this._div.innerHTML = '<h4>Candidati Elezioni Regionali</h4>Passa il mouse su un comune';
+                return;
+            }
+
+            let content = '<h4>' + props.COMUNE + '</h4>';
+            
+            if (props.elettorale && props.elettorale.candidati.length > 0) {
+                const candidati = selectedCandidato 
+                    ? props.elettorale.candidati.filter(c => 
+                        c.nome.toUpperCase().includes(selectedCandidato.toUpperCase()))
+                    : props.elettorale.candidati.slice(0, 10); // Top 10
+
+                content += '<div style="margin-top: 10px;">';
+                content += '<strong>Top candidati:</strong><br>';
+                candidati.forEach((cand, idx) => {
+                    content += `<div class="candidato-item">`;
+                    content += `<span class="candidato-nome">${idx + 1}. ${cand.nome}</span><br>`;
+                    content += `<span class="candidato-voti">${cand.voti.toLocaleString('it-IT')} voti</span><br>`;
+                    content += `<span class="candidato-lista">${cand.lista || 'N/A'}</span>`;
+                    content += `</div>`;
+                });
+                content += '</div>';
+            } else {
+                content += '<br>Nessun dato disponibile';
+            }
+            
+            this._div.innerHTML = content;
+        };
+        info.addTo(map);
+
+        // Funzione per calcolare il colore in base ai voti
+        function getColor(voti) {
+            return voti > 200 ? '#800026' :
+                   voti > 150 ? '#BD0026' :
+                   voti > 100 ? '#E31A1C' :
+                   voti > 75  ? '#FC4E2A' :
+                   voti > 50  ? '#FD8D3C' :
+                   voti > 25  ? '#FEB24C' :
+                   voti > 10  ? '#FED976' :
+                                '#FFEDA0';
+        }
+
+        // Funzione per calcolare i voti del candidato selezionato in un comune
+        function getVotiCandidato(feature) {
+            if (!feature.properties.elettorale || !feature.properties.elettorale.candidati) {
+                return 0;
+            }
+
+            if (!selectedCandidato) {
+                // Se nessun candidato selezionato, usa il massimo
+                const maxVoti = Math.max(...feature.properties.elettorale.candidati.map(c => c.voti), 0);
+                return maxVoti;
+            }
+
+            // Cerca il candidato selezionato
+            const candidato = feature.properties.elettorale.candidati.find(c => 
+                c.nome.toUpperCase().includes(selectedCandidato.toUpperCase())
+            );
+            
+            return candidato ? candidato.voti : 0;
+        }
+
+        // Style per ogni comune
+        function style(feature) {
+            const voti = getVotiCandidato(feature);
+            return {
+                fillColor: getColor(voti),
+                weight: 1,
+                opacity: 1,
+                color: 'white',
+                fillOpacity: 0.7
+            };
+        }
+
+        // Highlight feature
+        function highlightFeature(e) {
+            const layer = e.target;
+            layer.setStyle({
+                weight: 3,
+                color: '#666',
+                dashArray: '',
+                fillOpacity: 0.9
+            });
+            layer.bringToFront();
+            info.update(layer.feature.properties);
+        }
+
+        function resetHighlight(e) {
+            geojsonLayer.resetStyle(e.target);
+            info.update();
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
+        }
+
+        // Carica il GeoJSON
+        fetch('salerno_candidati.geojson')
+            .then(response => response.json())
+            .then(data => {
+                // Raccogli tutti i candidati
+                data.features.forEach(feature => {
+                    if (feature.properties.elettorale && feature.properties.elettorale.candidati) {
+                        feature.properties.elettorale.candidati.forEach(cand => {
+                            allCandidati.add(cand.nome);
+                        });
+                    }
+                });
+
+                // Popola il select con i candidati
+                const select = document.getElementById('candidatoSelect');
+                const candidatiOrdinati = Array.from(allCandidati).sort();
+                candidatiOrdinati.forEach(nome => {
+                    const option = document.createElement('option');
+                    option.value = nome;
+                    option.textContent = nome;
+                    select.appendChild(option);
+                });
+
+                // Aggiungi il layer alla mappa
+                geojsonLayer = L.geoJSON(data, {
+                    style: style,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+
+                // Zoom sui bounds
+                map.fitBounds(geojsonLayer.getBounds());
+
+                // Event listener per il cambio di candidato
+                select.addEventListener('change', function() {
+                    selectedCandidato = this.value;
+                    geojsonLayer.setStyle(style);
+                    info.update();
+                });
+            })
+            .catch(error => console.error('Errore nel caricamento del GeoJSON:', error));
+
+        // Legenda
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function (map) {
+            const div = L.DomUtil.create('div', 'info legend');
+            const grades = [0, 10, 25, 50, 75, 100, 150, 200];
+            const labels = [];
+
+            div.innerHTML = '<strong>Voti</strong><br>';
+            
+            for (let i = 0; i < grades.length; i++) {
+                div.innerHTML +=
+                    '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+                    grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            }
+            
+            return div;
+        };
+        legend.addTo(map);
+    </script>
+</body>
+</html>

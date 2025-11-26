@@ -1,0 +1,1440 @@
+{
+    "int": {
+        "st": "ESERCIZIO",
+        "t_ele": "Regionali Speciali",
+        "f_elet": "SCRUTINI ELENCHI",
+        "dt_ele": 20251123000000,
+        "l_terr": "PROVINCIA",
+        "area": "I",
+        "cod_prov": 72,
+        "desc_prov": "SALERNO",
+        "sz_pres": 1160,
+        "sz_cons": 1160,
+        "sz_tot": 1160
+    },
+    "note": null,
+    "enti": [
+        {
+            "cod_ente": 10,
+            "desc_ente": "ACERNO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124224721,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 20,
+            "desc_ente": "AGROPOLI",
+            "sz_pres": 21,
+            "sz_cons": 21,
+            "sz_tot": 21,
+            "agg": 20251125035237,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 30,
+            "desc_ente": "ALBANELLA",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251124232925,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 40,
+            "desc_ente": "ALFANO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124225654,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 50,
+            "desc_ente": "ALTAVILLA SILENTINA",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251124223530,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 60,
+            "desc_ente": "AMALFI",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251124210115,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 70,
+            "desc_ente": "ANGRI",
+            "sz_pres": 27,
+            "sz_cons": 27,
+            "sz_tot": 27,
+            "agg": 20251124233036,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 80,
+            "desc_ente": "AQUARA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124205244,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 90,
+            "desc_ente": "ASCEA",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251124235133,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 100,
+            "desc_ente": "ATENA LUCANA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125010905,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 110,
+            "desc_ente": "ATRANI",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251125010327,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 120,
+            "desc_ente": "AULETTA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251125031823,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 130,
+            "desc_ente": "BARONISSI",
+            "sz_pres": 17,
+            "sz_cons": 17,
+            "sz_tot": 17,
+            "agg": 20251124233332,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 140,
+            "desc_ente": "BATTIPAGLIA",
+            "sz_pres": 48,
+            "sz_cons": 48,
+            "sz_tot": 48,
+            "agg": 20251125011114,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 141,
+            "desc_ente": "BELLIZZI",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251124223249,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 150,
+            "desc_ente": "BELLOSGUARDO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124193008,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 160,
+            "desc_ente": "BRACIGLIANO",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251125000105,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 170,
+            "desc_ente": "BUCCINO",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124233842,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 180,
+            "desc_ente": "BUONABITACOLO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124212131,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 190,
+            "desc_ente": "CAGGIANO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124210414,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 200,
+            "desc_ente": "CALVANICO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124194022,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 210,
+            "desc_ente": "CAMEROTA",
+            "sz_pres": 7,
+            "sz_cons": 7,
+            "sz_tot": 7,
+            "agg": 20251125002710,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 220,
+            "desc_ente": "CAMPAGNA",
+            "sz_pres": 18,
+            "sz_cons": 18,
+            "sz_tot": 18,
+            "agg": 20251124221101,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 230,
+            "desc_ente": "CAMPORA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124194357,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 240,
+            "desc_ente": "CANNALONGA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124194427,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 250,
+            "desc_ente": "CAPACCIO PAESTUM",
+            "sz_pres": 20,
+            "sz_cons": 20,
+            "sz_tot": 20,
+            "agg": 20251124223049,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 260,
+            "desc_ente": "CASALBUONO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124202824,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 270,
+            "desc_ente": "CASALETTO SPARTANO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124212539,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 280,
+            "desc_ente": "CASAL VELINO",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124231858,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 290,
+            "desc_ente": "CASELLE IN PITTARI",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124230357,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 300,
+            "desc_ente": "CASTELCIVITA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124213920,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 310,
+            "desc_ente": "CASTELLABATE",
+            "sz_pres": 11,
+            "sz_cons": 11,
+            "sz_tot": 11,
+            "agg": 20251124225624,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 320,
+            "desc_ente": "CASTELNUOVO CILENTO",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251125010655,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 330,
+            "desc_ente": "CASTELNUOVO DI CONZA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124174331,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 340,
+            "desc_ente": "CASTEL SAN GIORGIO",
+            "sz_pres": 13,
+            "sz_cons": 13,
+            "sz_tot": 13,
+            "agg": 20251124231004,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 350,
+            "desc_ente": "CASTEL SAN LORENZO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124212024,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 360,
+            "desc_ente": "CASTIGLIONE DEL GENOVESI",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124203628,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 370,
+            "desc_ente": "CAVA DE' TIRRENI",
+            "sz_pres": 55,
+            "sz_cons": 55,
+            "sz_tot": 55,
+            "agg": 20251125030941,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 380,
+            "desc_ente": "CELLE DI BULGHERIA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124215635,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 390,
+            "desc_ente": "CENTOLA",
+            "sz_pres": 7,
+            "sz_cons": 7,
+            "sz_tot": 7,
+            "agg": 20251124213301,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 400,
+            "desc_ente": "CERASO",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251125000103,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 410,
+            "desc_ente": "CETARA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124233111,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 420,
+            "desc_ente": "CICERALE",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124213813,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 430,
+            "desc_ente": "COLLIANO",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124214934,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 440,
+            "desc_ente": "CONCA DEI MARINI",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124221446,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 450,
+            "desc_ente": "CONTRONE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124205244,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 460,
+            "desc_ente": "CONTURSI TERME",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125014441,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 470,
+            "desc_ente": "CORBARA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124215327,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 480,
+            "desc_ente": "CORLETO MONFORTE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124190143,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 490,
+            "desc_ente": "CUCCARO VETERE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124204126,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 500,
+            "desc_ente": "EBOLI",
+            "sz_pres": 34,
+            "sz_cons": 34,
+            "sz_tot": 34,
+            "agg": 20251124235147,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 510,
+            "desc_ente": "FELITTO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124203624,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 520,
+            "desc_ente": "FISCIANO",
+            "sz_pres": 12,
+            "sz_cons": 12,
+            "sz_tot": 12,
+            "agg": 20251125011307,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 530,
+            "desc_ente": "FURORE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124193005,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 540,
+            "desc_ente": "FUTANI",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124200931,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 550,
+            "desc_ente": "GIFFONI SEI CASALI",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124234142,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 560,
+            "desc_ente": "GIFFONI VALLE PIANA",
+            "sz_pres": 11,
+            "sz_cons": 11,
+            "sz_tot": 11,
+            "agg": 20251125002705,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 570,
+            "desc_ente": "GIOI",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124184005,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 580,
+            "desc_ente": "GIUNGANO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124213610,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 590,
+            "desc_ente": "ISPANI",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125030944,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 600,
+            "desc_ente": "LAUREANA CILENTO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124222534,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 610,
+            "desc_ente": "LAURINO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124232623,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 620,
+            "desc_ente": "LAURITO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124234625,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 630,
+            "desc_ente": "LAVIANO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124205849,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 640,
+            "desc_ente": "LUSTRA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124215634,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 650,
+            "desc_ente": "MAGLIANO VETERE",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124191644,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 660,
+            "desc_ente": "MAIORI",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251124233420,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 670,
+            "desc_ente": "MERCATO SAN SEVERINO",
+            "sz_pres": 18,
+            "sz_cons": 18,
+            "sz_tot": 18,
+            "agg": 20251125021129,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 680,
+            "desc_ente": "MINORI",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125012838,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 690,
+            "desc_ente": "MOIO DELLA CIVITELLA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124225153,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 700,
+            "desc_ente": "MONTANO ANTILIA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124231109,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 710,
+            "desc_ente": "MONTECORICE",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251124195744,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 720,
+            "desc_ente": "MONTECORVINO PUGLIANO",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251124234311,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 730,
+            "desc_ente": "MONTECORVINO ROVELLA",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251124230729,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 740,
+            "desc_ente": "MONTEFORTE CILENTO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124214904,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 750,
+            "desc_ente": "MONTE SAN GIACOMO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251125010655,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 760,
+            "desc_ente": "MONTESANO SULLA MARCELLANA",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251124234557,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 770,
+            "desc_ente": "MORIGERATI",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124201203,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 780,
+            "desc_ente": "NOCERA INFERIORE",
+            "sz_pres": 46,
+            "sz_cons": 46,
+            "sz_tot": 46,
+            "agg": 20251125062848,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 790,
+            "desc_ente": "NOCERA SUPERIORE",
+            "sz_pres": 20,
+            "sz_cons": 20,
+            "sz_tot": 20,
+            "agg": 20251125005736,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 800,
+            "desc_ente": "NOVI VELIA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124234740,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 810,
+            "desc_ente": "OGLIASTRO CILENTO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124221751,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 820,
+            "desc_ente": "OLEVANO SUL TUSCIANO",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251125001905,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 830,
+            "desc_ente": "OLIVETO CITRA",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251125004245,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 840,
+            "desc_ente": "OMIGNANO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124205706,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 850,
+            "desc_ente": "ORRIA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124211549,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 860,
+            "desc_ente": "OTTATI",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124204358,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 870,
+            "desc_ente": "PADULA",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251125012903,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 880,
+            "desc_ente": "PAGANI",
+            "sz_pres": 36,
+            "sz_cons": 36,
+            "sz_tot": 36,
+            "agg": 20251125000936,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 890,
+            "desc_ente": "PALOMONTE",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124233417,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 900,
+            "desc_ente": "PELLEZZANO",
+            "sz_pres": 11,
+            "sz_cons": 11,
+            "sz_tot": 11,
+            "agg": 20251124223528,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 910,
+            "desc_ente": "PERDIFUMO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124221759,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 920,
+            "desc_ente": "PERITO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124185850,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 930,
+            "desc_ente": "PERTOSA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124225512,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 940,
+            "desc_ente": "PETINA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124210935,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 950,
+            "desc_ente": "PIAGGINE",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124220058,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 960,
+            "desc_ente": "PISCIOTTA",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251125005736,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 970,
+            "desc_ente": "POLLA",
+            "sz_pres": 6,
+            "sz_cons": 6,
+            "sz_tot": 6,
+            "agg": 20251124214204,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 980,
+            "desc_ente": "POLLICA",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124200028,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 990,
+            "desc_ente": "PONTECAGNANO FAIANO",
+            "sz_pres": 22,
+            "sz_cons": 22,
+            "sz_tot": 22,
+            "agg": 20251125013128,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1000,
+            "desc_ente": "POSITANO",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124215930,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1010,
+            "desc_ente": "POSTIGLIONE",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124231153,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1020,
+            "desc_ente": "PRAIANO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124235301,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1030,
+            "desc_ente": "PRIGNANO CILENTO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124221610,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1040,
+            "desc_ente": "RAVELLO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124195256,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1050,
+            "desc_ente": "RICIGLIANO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251125000936,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1060,
+            "desc_ente": "ROCCADASPIDE",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251125000716,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1070,
+            "desc_ente": "ROCCAGLORIOSA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124222448,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1080,
+            "desc_ente": "ROCCAPIEMONTE",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251124231453,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1090,
+            "desc_ente": "ROFRANO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124215023,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1100,
+            "desc_ente": "ROMAGNANO AL MONTE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124192836,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1110,
+            "desc_ente": "ROSCIGNO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124211549,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1120,
+            "desc_ente": "RUTINO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124215442,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1130,
+            "desc_ente": "SACCO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124203624,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1140,
+            "desc_ente": "SALA CONSILINA",
+            "sz_pres": 13,
+            "sz_cons": 13,
+            "sz_tot": 13,
+            "agg": 20251125005431,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1150,
+            "desc_ente": "SALENTO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124220734,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1160,
+            "desc_ente": "SALERNO",
+            "sz_pres": 152,
+            "sz_cons": 152,
+            "sz_tot": 152,
+            "agg": 20251125070400,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1170,
+            "desc_ente": "SALVITELLE",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124213150,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1180,
+            "desc_ente": "SAN CIPRIANO PICENTINO",
+            "sz_pres": 7,
+            "sz_cons": 7,
+            "sz_tot": 7,
+            "agg": 20251124212048,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1190,
+            "desc_ente": "SAN GIOVANNI A PIRO",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124233323,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1200,
+            "desc_ente": "SAN GREGORIO MAGNO",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124205243,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1210,
+            "desc_ente": "SAN MANGO PIEMONTE",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124230000,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1220,
+            "desc_ente": "SAN MARZANO SUL SARNO",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251125002432,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1230,
+            "desc_ente": "SAN MAURO CILENTO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124184153,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1240,
+            "desc_ente": "SAN MAURO LA BRUCA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124200038,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1250,
+            "desc_ente": "SAN PIETRO AL TANAGRO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124213558,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1260,
+            "desc_ente": "SAN RUFO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124203625,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1270,
+            "desc_ente": "SANTA MARINA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125003245,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1280,
+            "desc_ente": "SANT'ANGELO A FASANELLA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124202507,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1290,
+            "desc_ente": "SANT'ARSENIO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124214903,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1300,
+            "desc_ente": "SANT'EGIDIO DEL MONTE ALBINO",
+            "sz_pres": 8,
+            "sz_cons": 8,
+            "sz_tot": 8,
+            "agg": 20251124231920,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1310,
+            "desc_ente": "SANTOMENNA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124181820,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1320,
+            "desc_ente": "SAN VALENTINO TORIO",
+            "sz_pres": 9,
+            "sz_cons": 9,
+            "sz_tot": 9,
+            "agg": 20251125002810,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1330,
+            "desc_ente": "SANZA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251125000311,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1340,
+            "desc_ente": "SAPRI",
+            "sz_pres": 7,
+            "sz_cons": 7,
+            "sz_tot": 7,
+            "agg": 20251125002204,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1350,
+            "desc_ente": "SARNO",
+            "sz_pres": 34,
+            "sz_cons": 34,
+            "sz_tot": 34,
+            "agg": 20251125011114,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1360,
+            "desc_ente": "SASSANO",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124224449,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1370,
+            "desc_ente": "SCAFATI",
+            "sz_pres": 41,
+            "sz_cons": 41,
+            "sz_tot": 41,
+            "agg": 20251125002319,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1380,
+            "desc_ente": "SCALA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251125015337,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1390,
+            "desc_ente": "SERRAMEZZANA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124184427,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1400,
+            "desc_ente": "SERRE",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251125025832,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1410,
+            "desc_ente": "SESSA CILENTO",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124204131,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1420,
+            "desc_ente": "SIANO",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251125002654,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1430,
+            "desc_ente": "SICIGNANO DEGLI ALBURNI",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124231102,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1440,
+            "desc_ente": "STELLA CILENTO",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124204119,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1450,
+            "desc_ente": "STIO",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124190143,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1460,
+            "desc_ente": "TEGGIANO",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251124231723,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1470,
+            "desc_ente": "TORCHIARA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251125004819,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1480,
+            "desc_ente": "TORRACA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251125003659,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1490,
+            "desc_ente": "TORRE ORSAIA",
+            "sz_pres": 3,
+            "sz_cons": 3,
+            "sz_tot": 3,
+            "agg": 20251124205243,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1500,
+            "desc_ente": "TORTORELLA",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124200829,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1510,
+            "desc_ente": "TRAMONTI",
+            "sz_pres": 5,
+            "sz_cons": 5,
+            "sz_tot": 5,
+            "agg": 20251124194341,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1520,
+            "desc_ente": "TRENTINARA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124201920,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1530,
+            "desc_ente": "VALLE DELL'ANGELO",
+            "sz_pres": 1,
+            "sz_cons": 1,
+            "sz_tot": 1,
+            "agg": 20251124184846,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1540,
+            "desc_ente": "VALLO DELLA LUCANIA",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251124233131,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1550,
+            "desc_ente": "VALVA",
+            "sz_pres": 2,
+            "sz_cons": 2,
+            "sz_tot": 2,
+            "agg": 20251124230454,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1560,
+            "desc_ente": "VIBONATI",
+            "sz_pres": 4,
+            "sz_cons": 4,
+            "sz_tot": 4,
+            "agg": 20251124221101,
+            "tipo_tras": "SZ"
+        },
+        {
+            "cod_ente": 1570,
+            "desc_ente": "VIETRI SUL MARE",
+            "sz_pres": 10,
+            "sz_cons": 10,
+            "sz_tot": 10,
+            "agg": 20251125052808,
+            "tipo_tras": "SZ"
+        }
+    ]
+}
